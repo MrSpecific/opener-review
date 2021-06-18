@@ -1,0 +1,23 @@
+:root {
+  --black: #000;
+  --white: #fff;
+
+  --wave-teal: #185b59;
+  --sand: #9a8b74;
+  --tuna-red: #ce3322;
+  --deep-ocean-blue: #1f2941;
+  --deep-yellow: #ce902a;
+  --natural-white: #f2f1ed;
+  --ocean-blue: #32454c;
+  --gold: #7f6d4e;
+  --white: #ffffff;
+  --sea-grean: #7e9487;
+  --pure-blue: #0000ee;
+
+  --body-bg: var(--sand);
+  --body-color: var(--deep-ocean-blue);
+
+  --link-color: var(--deep-ocean-blue);
+  --link-color-hover: var(--deep-ocean-blue);
+  --link-color-active: var(--deep-ocean-blue);
+}

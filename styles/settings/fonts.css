@@ -1,0 +1,52 @@
+@font-face {
+  font-family: FreightDispPro;
+  src: local(FreightDispProBlack-Regular),
+    url("/fonts/FreightDispProBlack-Regular.woff2") format("woff2"),
+    url("/fonts/FreightDispProBlack-Regular.woff") format("woff"),
+    url("/fonts/FreightDispProBlack-Regular.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: FreightDispPro;
+  src: local(FreightDispProBold-Regular),
+    url("/fonts/FreightDispProBold-Regular.woff2") format("woff2"),
+    url("/fonts/FreightDispProBold-Regular.woff") format("woff"),
+    url("/fonts/FreightDispProBold-Regular.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: FreightDispPro;
+  src: local(FreightDispProMedium-Regular),
+    url("/fonts/FreightDispProMedium-Regular.woff2") format("woff2"),
+    url("/fonts/FreightDispProMedium-Regular.woff") format("woff"),
+    url("/fonts/FreightDispProMedium-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: GTWalsheim;
+  src: local(GTWalsheim-Regular), url("/fonts/GTWalsheim-Regular.woff2") format("woff2"),
+    url("/fonts/GTWalsheim-Regular.woff") format("woff"),
+    url("/fonts/GTWalsheim-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: GTWalsheim;
+  src: local(GTWalsheim-Bold), url("/fonts/GTWalsheim-Bold.woff2") format("woff2"),
+    url("/fonts/GTWalsheim-Bold.woff") format("woff"),
+    url("/fonts/GTWalsheim-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+}
