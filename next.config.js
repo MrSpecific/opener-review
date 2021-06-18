@@ -7,7 +7,5 @@ const withNextPluginPreval = createNextPluginPreval();
 
 // module.exports = withNextPluginPreval();
 module.exports = withPlugins([withNextPluginPreval()], {
-  future: {
-    webpack5: true,
-  },
+  webpack5: true,
 });
