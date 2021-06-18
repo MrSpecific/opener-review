@@ -12,13 +12,13 @@ const Header = (props) => {
 
   return (
     <header className={headerClass}>
-      <h1 className={styles.title}>
+      <div className={styles.headerTop}>
         <Link href={'/'}>
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <a>{props.title || siteInfo.title}</a>
+          <a className={styles.siteTitle}>{props.title || siteInfo.title}</a>
         </Link>
-      </h1>
-      {props.children}
+      </div>
+      <div className={styles.headerBottom}>{props.children}</div>
     </header>
   );
 };

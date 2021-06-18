@@ -8,6 +8,10 @@ a {
   text-decoration: none;
 }
 
+:--heading {
+  letter-spacing: -1px;
+}
+
 h1,
 .h1,
 .mega {

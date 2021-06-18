@@ -3,6 +3,7 @@
 @import "./settings/breakpoints";
 @import "./settings/colors";
 @import "./settings/fonts";
+@import "./settings/selectors";
 @import "./settings/typography";
 @import "./settings/units";
 
