@@ -29,31 +29,37 @@ export const responsiveImageFragment = gql`
   }
 `;
 
-const RECIPE_LIST_QUERY = gql`
-  query HomePage($limit: IntType) {
-    allRecipes(first: $limit) {
+const REVIEW_LIST_QUERY = gql`
+  query ReviewList($limit: IntType) {
+    allReviews(first: $limit) {
       title
       slug
-      cover {
-        responsiveImage(imgixParams: { fit: crop, w: 600, h: 600 }) {
-          ...responsiveImageFragment
-        }
-      }
     }
   }
-
-  ${responsiveImageFragment}
 `;
 
-export async function getRecipeList(options = {}) {
+export async function getReviewList(options = {}) {
   const { limit } = options;
 
   const data = await request({
-    query: RECIPE_LIST_QUERY,
+    query: REVIEW_LIST_QUERY,
     // variables: { limit: 10 },
     variables: { limit },
     preview: false,
   });
 
-  return data.allRecipes;
+  return data.allReviews;
 }
+
+// Get just the paths from a set of entries
+export const getPaths = (entries, identifier = 'slug') => {
+  const paths = entries.map((entry) => {
+    return {
+      params: {
+        [identifier]: entry.slug || entry.fields.slug,
+      },
+    };
+  });
+
+  return paths;
+};

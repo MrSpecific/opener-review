@@ -1,18 +1,21 @@
 import { request, responsiveImageFragment } from '@data/datocms';
-import { Image } from 'react-datocms';
 import { gql } from 'graphql-request';
 import siteInfo from '@data/siteInfo';
 
 import Layout from '@components/layout/Layout';
-import styles from '../styles/Home.module.css';
+import ReviewCard from '@components/ReviewCard';
+import styles from '@styles/Home.module.css';
 
 export default function Home(props) {
-  const { featuredImage } = props?.data?.allReviews[0];
+  const featuredReview = props?.data?.allReviews[0];
+
   // console.log(featuredImage);
   return (
     <Layout className={styles.container} pageTitle={siteInfo.tagline}>
       {/* <pre>{JSON.stringify(props, null, 2)}</pre> */}
-      <Image data={featuredImage.responsiveImage} className="cardImage"></Image>
+      <div className="gutter">
+        <ReviewCard {...featuredReview} size="jumbo" HeadingLevel="h3" />
+      </div>
     </Layout>
   );
 }

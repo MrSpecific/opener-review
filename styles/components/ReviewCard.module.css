@@ -1,0 +1,23 @@
+.reviewCard {
+  position: relative;
+}
+
+.cardImage {
+  width: 100%;
+}
+
+.card--jumbo {
+}
+
+.oneLiner {
+  font-size: 18px;
+}
+
+.cardLink {
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+}
