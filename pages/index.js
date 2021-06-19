@@ -25,9 +25,9 @@ const HOMEPAGE_QUERY = gql`
     allReviews(first: 1, orderBy: [date_DESC]) {
       id
       date
-      oneLiner
       slug
       title
+      oneLiner
       featuredImage {
         responsiveImage(imgixParams: { w: 1600, h: 600 }) {
           ...responsiveImageFragment

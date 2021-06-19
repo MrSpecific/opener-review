@@ -1,11 +1,15 @@
 import classNames from 'classnames';
+import styles from '@styles/components/ButtonLink.module.css';
 
 export default function ButtonLink(props) {
+  const { label, href } = props;
   const buttonClass = classNames({
-    hero: true,
-    'background-cover': true,
-    [styles.hero]: true,
+    [styles.buttonLink]: true,
   });
 
-  return <a className={buttonClass}></a>;
+  return (
+    <a className={buttonClass} href={href}>
+      {label}
+    </a>
+  );
 }

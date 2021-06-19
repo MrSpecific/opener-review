@@ -2,12 +2,17 @@
 import { gql } from 'graphql-request';
 // import { Image, StructuredText } from 'react-datocms';
 import { request, responsiveImageFragment, getReviewList, getPaths } from '@data/datocms';
+import { Image } from 'react-datocms';
+// import ReactMarkdown from 'react-markdown';
+import parse from 'html-react-parser';
 
 import Layout from '@components/layout/Layout';
+import RichText from '@components/RichText';
 import styles from '@styles/pages/Review.module.css';
+import { breakList } from 'prelude-ls';
 
 export default function SingleRecipe(props) {
-  // const { fields } = props;
+  // const { intro } = props;
   // const router = useRouter();
   // const id = router.query;
 
@@ -18,6 +23,30 @@ export default function SingleRecipe(props) {
           font-weight: bold;
         }
       `}</style>
+      <pre>{JSON.stringify(props, null, 2)}</pre>
+      <Image data={props.featuredImage.responsiveImage} className={styles.featuredImage}></Image>
+      {parse(props.intro)}
+
+      {props.content && (
+        <section className={styles.reviewContent}>
+          {props.content.map((block) => {
+            const { _modelApiKey } = block;
+            let component;
+
+            switch (_modelApiKey) {
+              case 'rich_text':
+                component = <RichText {...block} />;
+                break;
+              default:
+                component = false;
+                break;
+            }
+
+            return component;
+          })}
+        </section>
+      )}
+      {/* {props.intro && StructuredText(props.intro)} */}
     </Layout>
   );
 }
@@ -27,7 +56,6 @@ export async function getStaticPaths() {
 
   const paths = getPaths(allReviews, 'reviewSlug');
 
-  console.log(paths);
   return {
     paths,
     fallback: false,
@@ -40,6 +68,7 @@ const SINGLE_REVIEW_QUERY = gql`
       title
       date
       slug
+      intro
       featuredImage {
         responsiveImage(imgixParams: { fit: crop, w: 1400, h: 600 }) {
           ...responsiveImageFragment
@@ -51,6 +80,22 @@ const SINGLE_REVIEW_QUERY = gql`
       categories {
         title
         slug
+      }
+      content {
+        ... on ImageBlockRecord {
+          id
+          _modelApiKey
+          image {
+            responsiveImage(imgixParams: { fit: crop, w: 1400, h: 600 }) {
+              ...responsiveImageFragment
+            }
+          }
+        }
+        ... on RichTextRecord {
+          id
+          _modelApiKey
+          content
+        }
       }
     }
   }
