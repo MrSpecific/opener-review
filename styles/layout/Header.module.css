@@ -4,9 +4,3 @@
 .headerTop {
   border-bottom: 2px solid var(--black);
 }
-
-.siteTitle {
-  font-size: 34px;
-  font-weight: bold;
-  letter-spacing: -1px;
-}

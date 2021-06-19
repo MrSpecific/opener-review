@@ -18,6 +18,33 @@ h1,
   font-size: var(--font-size-h1);
 }
 
+.siteTitle {
+  font-size: 34px;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+h1.pageTitle,
+.pageTitle {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+  font-size: 20px;
+  font-weight: var(--semibold);
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: var(--yellow);
+    height: 0.4em;
+    top: 0.9em;
+    left: 0;
+    right: 0;
+    z-index: -1;
+  }
+}
+
 h2,
 .h2 {
   font-size: var(--font-size-h2);
