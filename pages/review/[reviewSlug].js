@@ -9,7 +9,6 @@ import parse from 'html-react-parser';
 import Layout from '@components/layout/Layout';
 import RichText from '@components/RichText';
 import styles from '@styles/pages/Review.module.css';
-import { breakList } from 'prelude-ls';
 
 export default function SingleRecipe(props) {
   // const { intro } = props;
