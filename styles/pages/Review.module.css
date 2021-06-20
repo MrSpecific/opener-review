@@ -1,2 +1,21 @@
+@import "../settings/breakpoints";
+
+.reviewLayout {
+  padding: var(--edge-space);
+}
+
 .featuredImage {
+  width: 100%;
+  height: auto;
+}
+
+.reviewTop {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: var(--spacer);
+  font-size: 18px;
+
+  @media (--large) {
+    grid-template-columns: 4fr 3fr;
+  }
 }

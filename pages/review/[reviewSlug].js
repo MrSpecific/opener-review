@@ -3,6 +3,7 @@ import { gql } from 'graphql-request';
 // import { Image, StructuredText } from 'react-datocms';
 import { request, responsiveImageFragment, getReviewList, getPaths } from '@data/datocms';
 import { Image } from 'react-datocms';
+import Link from 'next/link';
 // import ReactMarkdown from 'react-markdown';
 import parse from 'html-react-parser';
 
@@ -16,15 +17,23 @@ export default function SingleRecipe(props) {
   // const id = router.query;
 
   return (
-    <Layout pageTitle={props.title} className={styles}>
+    <Layout pageTitle={props.title} className={styles.reviewLayout}>
       <style jsx>{`
         .recipe :global(.ingredient-name) {
           font-weight: bold;
         }
       `}</style>
-      <pre>{JSON.stringify(props, null, 2)}</pre>
-      <Image data={props.featuredImage.responsiveImage} className={styles.featuredImage}></Image>
-      {parse(props.intro)}
+      {/* <pre>{JSON.stringify(props, null, 2)}</pre> */}
+
+      <section className={styles.reviewTop}>
+        <div>
+          <Image
+            data={props.featuredImage.responsiveImage}
+            className={styles.featuredImage}
+          ></Image>
+        </div>
+        <div className="review-intro">{parse(props.intro)}</div>
+      </section>
 
       {props.content && (
         <section className={styles.reviewContent}>
@@ -45,6 +54,25 @@ export default function SingleRecipe(props) {
           })}
         </section>
       )}
+      <section className={styles.result}>
+        {props.verdict && <div className={styles.verdict}>{props.verdict}</div>}
+      </section>
+      <div className="attribution">
+        {props.date && <div className="date">Filed on {props.date}</div>}
+        {props.authors && (
+          <div className="authors">
+            By&nbsp;
+            {props.authors.map((author) => {
+              return (
+                <Link href={`/author/${author.slug}`} key={author.slug}>
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                  <a>{author.name}</a>
+                </Link>
+              );
+            })}
+          </div>
+        )}
+      </div>
       {/* {props.intro && StructuredText(props.intro)} */}
     </Layout>
   );
@@ -69,12 +97,13 @@ const SINGLE_REVIEW_QUERY = gql`
       slug
       intro
       featuredImage {
-        responsiveImage(imgixParams: { fit: crop, w: 1400, h: 600 }) {
+        responsiveImage(imgixParams: { fit: crop, w: 1400, h: 1000 }) {
           ...responsiveImageFragment
         }
       }
       authors {
         name
+        slug
       }
       categories {
         title
@@ -85,7 +114,7 @@ const SINGLE_REVIEW_QUERY = gql`
           id
           _modelApiKey
           image {
-            responsiveImage(imgixParams: { fit: crop, w: 1400, h: 600 }) {
+            responsiveImage(imgixParams: { fit: crop, w: 1400, h: 800 }) {
               ...responsiveImageFragment
             }
           }
@@ -96,6 +125,8 @@ const SINGLE_REVIEW_QUERY = gql`
           content
         }
       }
+      verdict
+      score
     }
   }
 

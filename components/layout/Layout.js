@@ -18,7 +18,7 @@ const Layout = (props) => {
         <h1 className="pageTitle">{pageTitle}</h1>
       </Header>
       {/* <pre>{JSON.stringify(siteInfo, null, 2)}</pre> */}
-      <main>{props.children}</main>
+      <main className={props?.className}>{props.children}</main>
       <Footer></Footer>
     </>
   );
