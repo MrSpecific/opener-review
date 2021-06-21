@@ -1,0 +1,9 @@
+.richText {
+  padding: 40px 0;
+  max-width: var(--content-width);
+  margin: 0 auto;
+
+  & > p {
+    margin-bottom: 40px;
+  }
+}

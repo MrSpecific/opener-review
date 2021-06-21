@@ -8,13 +8,12 @@ import Link from 'next/link';
 import parse from 'html-react-parser';
 
 import Layout from '@components/layout/Layout';
-import RichText from '@components/RichText';
+import RichText from '@components/blocks/RichText';
+import ImageBlock from '@components/blocks/ImageBlock';
 import styles from '@styles/pages/Review.module.css';
 
 export default function SingleRecipe(props) {
   // const { intro } = props;
-  // const router = useRouter();
-  // const id = router.query;
 
   return (
     <Layout pageTitle={props.title} className={styles.reviewLayout}>
@@ -44,6 +43,9 @@ export default function SingleRecipe(props) {
             switch (_modelApiKey) {
               case 'rich_text':
                 component = <RichText {...block} />;
+                break;
+              case 'image_block':
+                component = <ImageBlock {...block} />;
                 break;
               default:
                 component = false;
