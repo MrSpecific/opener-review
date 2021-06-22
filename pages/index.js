@@ -9,7 +9,6 @@ import styles from '@styles/Home.module.css';
 export default function Home(props) {
   const featuredReview = props?.data?.allReviews[0];
 
-  // console.log(featuredImage);
   return (
     <Layout className={styles.container} pageTitle={siteInfo.tagline}>
       {/* <pre>{JSON.stringify(props, null, 2)}</pre> */}
