@@ -8,8 +8,7 @@ import Link from 'next/link';
 import parse from 'html-react-parser';
 
 import Layout from '@components/layout/Layout';
-import RichText from '@components/blocks/RichText';
-import ImageBlock from '@components/blocks/ImageBlock';
+import Blocks from '@components/blocks/Blocks';
 import styles from '@styles/pages/Review.module.css';
 
 export default function SingleRecipe(props) {
@@ -34,28 +33,8 @@ export default function SingleRecipe(props) {
         <div className="review-intro">{parse(props.intro)}</div>
       </section>
 
-      {props.content && (
-        <section className={styles.reviewContent}>
-          {props.content.map((block) => {
-            const { _modelApiKey } = block;
-            let component;
+      {props.content && <Blocks content={props.content} />}
 
-            switch (_modelApiKey) {
-              case 'rich_text':
-                component = <RichText {...block} />;
-                break;
-              case 'image_block':
-                component = <ImageBlock {...block} />;
-                break;
-              default:
-                component = false;
-                break;
-            }
-
-            return component;
-          })}
-        </section>
-      )}
       <section className={styles.result}>
         {props.verdict && <div className={styles.verdict}>{props.verdict}</div>}
       </section>
