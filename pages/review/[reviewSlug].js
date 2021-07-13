@@ -9,6 +9,7 @@ import parse from 'html-react-parser';
 
 import Layout from '@components/layout/Layout';
 import Blocks from '@components/blocks/Blocks';
+import Verdict from '@components/Verdict';
 import styles from '@styles/pages/Review.module.css';
 
 export default function SingleRecipe(props) {
@@ -36,24 +37,24 @@ export default function SingleRecipe(props) {
       {props.content && <Blocks content={props.content} />}
 
       <section className={styles.result}>
-        {props.verdict && <div className={styles.verdict}>{props.verdict}</div>}
+        <Verdict {...props} />
+        <div className="attribution">
+          {props.date && <div className="date">Filed on {props.date}</div>}
+          {props.authors && (
+            <div className="authors">
+              By&nbsp;
+              {props.authors.map((author) => {
+                return (
+                  <Link href={`/author/${author.slug}`} key={author.slug}>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <a>{author.name}</a>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </div>
       </section>
-      <div className="attribution">
-        {props.date && <div className="date">Filed on {props.date}</div>}
-        {props.authors && (
-          <div className="authors">
-            By&nbsp;
-            {props.authors.map((author) => {
-              return (
-                <Link href={`/author/${author.slug}`} key={author.slug}>
-                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                  <a>{author.name}</a>
-                </Link>
-              );
-            })}
-          </div>
-        )}
-      </div>
       {/* {props.intro && StructuredText(props.intro)} */}
     </Layout>
   );

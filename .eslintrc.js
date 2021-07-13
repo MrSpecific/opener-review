@@ -24,7 +24,6 @@ module.exports = {
   },
   globals: {
     document: true,
-    theme: true,
   },
   env: {
     browser: true,

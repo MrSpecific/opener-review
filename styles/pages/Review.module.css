@@ -19,3 +19,18 @@
     grid-template-columns: 4fr 3fr;
   }
 }
+
+.result {
+  text-align: center;
+}
+
+.verdict {
+  & svg {
+    width: 60px;
+    height: auto;
+
+    & [data-id="fill"] {
+      fill: white;
+    }
+  }
+}

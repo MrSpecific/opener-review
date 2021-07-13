@@ -1,28 +1,36 @@
-// const withPlugins = require('next-compose-plugins');
-
-// /* eslint import/no-extraneous-dependencies: "off" */
-// const createNextPluginPreval = require('next-plugin-preval/config');
-
-// const withNextPluginPreval = createNextPluginPreval();
-
-// // module.exports = withNextPluginPreval();
-// module.exports = withPlugins([withNextPluginPreval()], {
-//   webpack5: true,
-//   typescript: {
-//     // !! WARN !!
-//     // Dangerously allow production builds to successfully complete even if
-//     // your project has type errors.
-//     // !! WARN !!
-//     ignoreBuildErrors: true,
-//   },
-// });
+// eslint-disable-next-line import/no-extraneous-dependencies
+const { extendDefaultPlugins } = require('svgo');
 
 module.exports = {
-  typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
-    ignoreBuildErrors: true,
+  // typescript: {
+  //   // !! WARN !!
+  //   // Dangerously allow production builds to successfully complete even if
+  //   // your project has type errors.
+  //   // !! WARN !!
+  //   ignoreBuildErrors: true,
+  // },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/i,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            svgoConfig: {
+              plugins: extendDefaultPlugins([
+                {
+                  name: 'removeAttrs',
+                  active: false,
+                },
+              ]),
+            },
+            svgProps: { className: 'svg-graphic' },
+            dimensions: false,
+          },
+        },
+      ],
+    });
+
+    return config;
   },
 };
